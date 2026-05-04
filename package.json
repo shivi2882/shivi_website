@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://shivi2882.github.io/shivi_website",
   "dependencies": {
+    "lucide-react": "^1.14.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.28.0",

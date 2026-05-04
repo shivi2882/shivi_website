@@ -1,6 +1,11 @@
+import { useLocation } from "react-router-dom";
 import { BeamsBackground } from "./BeamsBackground";
+import { HomeNavLink } from "./HomeNavLink";
 
 export function Layout({ children }) {
+  const { pathname } = useLocation();
+  const showHomeLink = pathname !== "/";
+
   return (
     <>
       <BeamsBackground />
@@ -11,6 +16,7 @@ export function Layout({ children }) {
           minHeight: "100vh",
         }}
       >
+        {showHomeLink ? <HomeNavLink /> : null}
         {children}
       </div>
     </>

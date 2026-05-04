@@ -7,6 +7,7 @@ import { WorkPage } from "./pages/WorkPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 
 export default function App() {
+  /* GitHub Pages: use HashRouter so deep links and reloads work without server rewrites. */
   return (
     <HashRouter>
       <Layout>

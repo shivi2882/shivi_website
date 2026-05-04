@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap");
 
 :root {
   --sky: #38bdf8;
@@ -12,11 +12,51 @@
   box-sizing: border-box;
 }
 
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+}
+
 body {
   background: #000;
   color: #fff;
   font-family: "Outfit", sans-serif;
   min-height: 100vh;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  opacity: 0;
+  animation: pageEnter 0.4s ease forwards;
 }
 
 h1,
@@ -34,4 +74,758 @@ h6 {
   backdrop-filter: blur(12px);
   border-radius: 16px;
   padding: 2rem;
+}
+
+/* —— Home page —— */
+.home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.home-inner {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+
+.home-hero {
+  text-align: center;
+  width: 100%;
+}
+
+.home-hero-name {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: clamp(3rem, 10vw, 7rem);
+  color: #fff;
+  letter-spacing: 0.05em;
+  line-height: 1.05;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(28px);
+  animation: homeHeroNameIn 0.95s ease-out forwards;
+}
+
+@keyframes homeHeroNameIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-hero-tagline {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(1rem, 2.4vw, 1.3rem);
+  color: #fff;
+  opacity: 0;
+  max-width: 600px;
+  margin: 1rem auto 0;
+  line-height: 1.7;
+  animation: homeHeroTaglineIn 0.85s ease-out 0.3s forwards;
+}
+
+@keyframes homeHeroTaglineIn {
+  to {
+    opacity: 0.75;
+  }
+}
+
+.home-nav {
+  width: 100%;
+  max-width: 560px;
+}
+
+.home-nav-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .home-nav-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home-nav-tile {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  align-items: flex-start;
+  padding: 1.35rem 1.5rem;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  font-family: inherit;
+  color: inherit;
+}
+
+.home-nav-tile:hover {
+  transform: translateY(-4px);
+}
+
+.home-nav-tile:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 3px;
+}
+
+.home-nav-tile--sky:hover {
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+.home-nav-tile--violet:hover {
+  box-shadow: 0 0 20px rgba(129, 140, 248, 0.3);
+}
+
+.home-nav-tile--rose:hover {
+  box-shadow: 0 0 20px rgba(251, 113, 133, 0.3);
+}
+
+.home-nav-tile-icon {
+  display: flex;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.home-nav-tile-label {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.home-nav-tile-desc {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  line-height: 1.45;
+}
+
+/* Fixed back control on inner routes */
+.home-back-link {
+  appearance: none;
+  -webkit-appearance: none;
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0.35rem 0.55rem;
+  border: none;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: opacity 0.2s ease;
+}
+
+.home-back-link:hover {
+  opacity: 0.7;
+}
+
+.home-back-link:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 3px;
+}
+
+.home-back-link-arrow {
+  display: block;
+  margin-top: -2px;
+  color: #fff;
+}
+
+/* —— About page —— */
+.about-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4.5rem 1.25rem 2rem;
+}
+
+.about-shell {
+  width: min(1100px, 94vw);
+  min-height: min(88vh, 880px);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+.about-grid {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+  flex: 1;
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .about-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    flex-direction: row;
+    align-items: stretch;
+    gap: clamp(2rem, 4vw, 3rem);
+    min-height: 0;
+  }
+}
+
+.about-heading {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 1.25rem;
+}
+
+.about-body {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 1.1rem;
+}
+
+.about-body:last-of-type {
+  margin-bottom: 0;
+}
+
+.about-link {
+  color: #38bdf8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.about-link:hover {
+  color: #7dd3fc;
+}
+
+.about-photo {
+  width: 100%;
+  min-height: 220px;
+}
+
+@media (min-width: 768px) {
+  .about-photo {
+    min-height: 0;
+    align-self: stretch;
+    display: flex;
+  }
+}
+
+.about-photo-img {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  border-radius: 12px;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .about-photo-img {
+    min-height: 100%;
+    flex: 1;
+  }
+}
+
+/* —— Community page —— */
+.community-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4.5rem 1.25rem 2.5rem;
+}
+
+.community-outer {
+  width: min(1100px, 94vw);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.community-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.community-layout {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+  align-items: stretch;
+}
+
+@media (min-width: 769px) {
+  .community-layout {
+    display: grid;
+    grid-template-columns: 65fr 35fr;
+    align-items: start;
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+  }
+}
+
+.community-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.community-role-card {
+  text-align: left;
+  padding: clamp(1.15rem, 3vw, 1.5rem) clamp(1.15rem, 3vw, 1.65rem);
+  margin-left: 0.35rem;
+  margin-right: 0.15rem;
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-radius: 14px;
+}
+
+.community-role-card--sky {
+  border-left-color: #38bdf8;
+}
+
+.community-role-card--violet {
+  border-left-color: #818cf8;
+}
+
+.community-role-card--rose {
+  border-left-color: #fb7185;
+}
+
+.community-role-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.45rem;
+  line-height: 1.25;
+}
+
+.community-role-subtitle {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(0.82rem, 1.6vw, 0.92rem);
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.5;
+  margin: 0 0 0.85rem;
+}
+
+.community-role-list {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.community-role-list li {
+  margin-bottom: 0.45rem;
+}
+
+.community-role-list li:last-child {
+  margin-bottom: 0;
+}
+
+.community-photos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.community-photo-img {
+  width: 100%;
+  min-height: 200px;
+  max-height: 340px;
+  border-radius: 12px;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .community-photo-img {
+    max-height: none;
+    flex: 1 1 auto;
+    min-height: 220px;
+  }
+
+  .community-photo-img:first-child {
+    min-height: 240px;
+  }
+
+  .community-photo-img:last-child {
+    min-height: 240px;
+  }
+}
+
+/* —— Work page —— */
+.work-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4.5rem 1.25rem 2.5rem;
+}
+
+.work-outer {
+  width: min(900px, 94vw);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.work-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.work-timeline {
+  position: relative;
+  padding-top: 0.25rem;
+}
+
+.work-timeline-line {
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    #38bdf8 0%,
+    #38bdf8 22%,
+    #818cf8 22%,
+    #818cf8 48%,
+    #fb7185 48%,
+    #fb7185 74%,
+    #38bdf8 74%,
+    #38bdf8 100%
+  );
+  box-shadow:
+    0 0 10px rgba(56, 189, 248, 0.55),
+    0 0 18px rgba(129, 140, 248, 0.4),
+    0 0 22px rgba(251, 113, 133, 0.35);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.work-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.work-item {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: clamp(0.85rem, 2.5vw, 1.35rem);
+  align-items: flex-start;
+  margin-bottom: clamp(1.1rem, 3vw, 1.5rem);
+}
+
+.work-item:last-child {
+  margin-bottom: 0;
+}
+
+.work-item-marker {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.45rem;
+}
+
+.work-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  background: #fff;
+}
+
+.work-dot--sky {
+  background: #38bdf8;
+  box-shadow:
+    0 0 0 2px rgba(56, 189, 248, 0.35),
+    0 0 14px rgba(56, 189, 248, 0.75);
+}
+
+.work-dot--violet {
+  background: #818cf8;
+  box-shadow:
+    0 0 0 2px rgba(129, 140, 248, 0.35),
+    0 0 14px rgba(129, 140, 248, 0.75);
+}
+
+.work-dot--rose {
+  background: #fb7185;
+  box-shadow:
+    0 0 0 2px rgba(251, 113, 133, 0.35),
+    0 0 14px rgba(251, 113, 133, 0.75);
+}
+
+.work-card {
+  text-align: left;
+  padding: clamp(1.1rem, 3vw, 1.45rem) clamp(1.1rem, 3vw, 1.5rem);
+  margin-left: 0.2rem;
+  margin-right: 0.1rem;
+}
+
+.work-card-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.35rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.65rem;
+  line-height: 1.25;
+}
+
+.work-card-list {
+  list-style: disc;
+  margin: 0;
+  padding-left: 1.2rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.work-card-list li {
+  margin-bottom: 0.4rem;
+}
+
+.work-card-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* —— Projects page —— */
+.projects-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4.5rem 1.25rem 2.5rem;
+}
+
+.projects-outer {
+  width: min(1000px, 94vw);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.projects-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 2.5vw, 1.35rem);
+  align-items: stretch;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+  padding: clamp(1.15rem, 3vw, 1.5rem);
+  min-width: 0;
+}
+
+.project-card-wide {
+  grid-column: 1 / -1;
+}
+
+.project-card-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.project-card-goal {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.65;
+  color: #fff;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.project-card-subtitle {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(0.88rem, 1.8vw, 0.95rem);
+  font-style: italic;
+  opacity: 0.72;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.project-card-desc {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(0.88rem, 1.8vw, 0.95rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0;
+}
+
+.project-card-list {
+  list-style: disc;
+  margin: 0;
+  padding-left: 1.15rem;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.project-card-list li {
+  margin-bottom: 0.35rem;
+}
+
+.project-card-list li:last-child {
+  margin-bottom: 0;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 0.35rem;
+}
+
+.project-tag {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.75rem;
+  font-family: "Outfit", sans-serif;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.4;
+}
+
+.project-paper-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  margin-top: 0.15rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #818cf8;
+  color: #818cf8;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.project-paper-btn:hover {
+  background: rgba(129, 140, 248, 0.15);
+  color: #a5b4fc;
+  border-color: #a5b4fc;
+}
+
+.project-paper-btn:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
+}
+
+/* —— Mobile (≤768px): single column, tighter type, full-width cards —— */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .glass-card {
+    padding: 1.35rem 1.15rem;
+  }
+
+  .about-shell,
+  .community-outer,
+  .work-outer,
+  .projects-outer {
+    width: min(100%, calc(100vw - 1.5rem));
+  }
+
+  .home-nav-tile-label {
+    font-size: 1.35rem;
+  }
+
+  .home-hero-name {
+    font-size: clamp(2.35rem, 12vw, 4.5rem);
+  }
+
+  .community-role-card {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .work-card-list {
+    font-size: 0.85rem;
+  }
+
+  .project-card-title {
+    font-size: 1.15rem;
+  }
+
+  .projects-title,
+  .work-title,
+  .community-title,
+  .about-heading {
+    font-size: clamp(1.85rem, 8vw, 2.65rem);
+  }
 }
