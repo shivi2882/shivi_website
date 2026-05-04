@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/shivi_website/static/css/main.346e4e90.css",
-    "main.js": "/shivi_website/static/js/main.e20f5419.js",
+    "main.css": "/shivi_website/static/css/main.29524945.css",
+    "main.js": "/shivi_website/static/js/main.ab8d3252.js",
     "static/js/453.e14b0309.chunk.js": "/shivi_website/static/js/453.e14b0309.chunk.js",
     "index.html": "/shivi_website/index.html",
-    "main.346e4e90.css.map": "/shivi_website/static/css/main.346e4e90.css.map",
-    "main.e20f5419.js.map": "/shivi_website/static/js/main.e20f5419.js.map",
+    "main.29524945.css.map": "/shivi_website/static/css/main.29524945.css.map",
+    "main.ab8d3252.js.map": "/shivi_website/static/js/main.ab8d3252.js.map",
     "453.e14b0309.chunk.js.map": "/shivi_website/static/js/453.e14b0309.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.346e4e90.css",
-    "static/js/main.e20f5419.js"
+    "static/css/main.29524945.css",
+    "static/js/main.ab8d3252.js"
   ]
 }
