@@ -1,5 +1,6 @@
+// Photo asset: public/images/about-me.jpeg (sync from images and files/image4.jpeg)
 export function AboutPage() {
-  const photoSrc = process.env.PUBLIC_URL + "/images/shivi.jpg";
+  const photoSrc = process.env.PUBLIC_URL + "/images/about-me.jpeg";
 
   return (
     <main className="about-page page-transition">

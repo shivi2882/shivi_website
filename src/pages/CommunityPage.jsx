@@ -60,14 +60,15 @@ export function CommunityPage() {
             ))}
           </div>
 
+          {/* Community photos: public/images/community-image1.jpeg (image1), community-image0.jpeg (image0) */}
           <aside className="community-photos" aria-label="Community photos">
             <img
-              src={process.env.PUBLIC_URL + "/images/community1.jpg"}
+              src={process.env.PUBLIC_URL + "/images/community-image1.jpeg"}
               alt="Community"
               className="community-photo-img"
             />
             <img
-              src={process.env.PUBLIC_URL + "/images/community2.jpg"}
+              src={process.env.PUBLIC_URL + "/images/community-image0.jpeg"}
               alt="Community"
               className="community-photo-img"
             />
